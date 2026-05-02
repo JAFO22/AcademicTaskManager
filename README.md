@@ -1,13 +1,15 @@
-﻿# Academic Task Manager - Version 1
+﻿# Academic Task Manager - Version 2
 
 ## Descripción
 
-Esta es la versión inicial del gestor de tareas académicas. Contiene la estructura básica con arquitectura hexagonal y permite crear y listar tareas.
+Esta versión evoluciona la arquitectura inicial e incluye más funcionalidad: permite crear tareas, listar todas, completar tareas y listar pendientes.
 
 ## Funcionalidades incluidas
 
 - Crear tarea
 - Listar tareas
+- Completar tarea
+- Listar tareas pendientes
 
 ## Qué contiene esta versión
 
@@ -18,15 +20,15 @@ Esta es la versión inicial del gestor de tareas académicas. Contiene la estruc
 
 ## Nota de implementación
 
-Esta versión inicial mantiene la arquitectura hexagonal completa y el contrato de puertos con todas las operaciones previstas. Las funciones de completar, listar pendientes y eliminar están definidas en los puertos y los casos de uso, pero su ejecución real se habilita en versiones posteriores.
+Esta versión intermedia mantiene la misma arquitectura hexagonal completa y añade las funciones de completar tareas y listar pendientes. La operación de eliminar tareas se define en puertos y casos de uso, pero su ejecución real se reserva para la versión 3.
 
 ## Cómo ejecutar
 
-1. Abre una terminal en la carpeta `AcademicTaskManager_v1`.
+1. Abre una terminal en la carpeta `AcademicTaskManager_v2`.
 2. Ejecuta:
 
 ```bash
 python -m task_manager.main
 ```
 
-3. Elige una opción del menú para crear o listar tareas.
+3. Usa el menú para crear tareas, listarlas, completarlas y mostrar pendientes.
