@@ -1,34 +1,77 @@
-﻿# Academic Task Manager - Version 2
+﻿# Academic Task Manager
 
-## Descripción
+## Descripción del problema
 
-Esta versión evoluciona la arquitectura inicial e incluye más funcionalidad: permite crear tareas, listar todas, completar tareas y listar pendientes.
+Este proyecto resuelve la gestión básica de tareas académicas desde consola. Permite crear tareas, guardarlas en memoria y consultar su estado en una interfaz simple de terminal.
 
-## Funcionalidades incluidas
+La idea es separar claramente la lógica del negocio de los detalles de entrada y salida, para que la aplicación sea fácil de entender, extender y probar.
 
-- Crear tarea
-- Listar tareas
-- Completar tarea
-- Listar tareas pendientes
+## Estructura del proyecto
 
-## Qué contiene esta versión
+```text
+task_manager/
+	main.py
+	adapters/
+		input/
+			cli_adapter.py
+		output/
+			memory_repository.py
+	application/
+		use_cases/
+			complete_task.py
+			create_task.py
+			delete_task.py
+			list_pending.py
+			list_tasks.py
+	domain/
+		exceptions.py
+		task.py
+	ports/
+		input/
+			task_service_port.py
+		output/
+			task_repository_port.py
+```
 
-- Dominio: `task.py`, `exceptions.py`
-- Puertos: `task_service_port.py`, `task_repository_port.py`
-- Adaptadores: `cli_adapter.py`, `memory_repository.py`
-- Casos de uso: `create_task.py`, `list_tasks.py`, `complete_task.py`, `list_pending.py`, `delete_task.py`
+## Pasos para ejecutar
 
-## Nota de implementación
-
-Esta versión intermedia mantiene la misma arquitectura hexagonal completa y añade las funciones de completar tareas y listar pendientes. La operación de eliminar tareas se define en puertos y casos de uso, pero su ejecución real se reserva para la versión 3.
-
-## Cómo ejecutar
-
-1. Abre una terminal en la carpeta `AcademicTaskManager_v2`.
-2. Ejecuta:
+1. Abre una terminal en la raíz del proyecto, `AcademicTaskManager`.
+2. Ejecuta la aplicación con:
 
 ```bash
 python -m task_manager.main
 ```
 
-3. Usa el menú para crear tareas, listarlas, completarlas y mostrar pendientes.
+3. En el menú de consola, elige una opción:
+
+- `1` para crear una tarea.
+- `2` para listar las tareas guardadas.
+- `3` para salir.
+
+## Tecnologías usadas
+
+- Python 3.13
+- Programación orientada a objetos
+- Arquitectura hexagonal
+- Aplicación de consola
+- Persistencia en memoria
+
+## Casos de uso implementados
+
+- `CreateTaskUseCase`: crea una tarea nueva y la guarda en el repositorio.
+- `ListTasksUseCase`: obtiene las tareas guardadas y las separa en pendientes y completadas.
+
+## Casos de uso pendientes
+
+- `CompleteTaskUseCase`
+- `ListPendingUseCase`
+- `DeleteTaskUseCase`
+
+## Puertos y adaptadores
+
+El proyecto usa la arquitectura de puertos y adaptadores para desacoplar la lógica central de la forma en que la aplicación interactúa con el exterior.
+
+- Los puertos definen contratos. Por ejemplo, `TaskServicePort` describe lo que la interfaz de entrada debe ofrecer y `TaskRepositoryPort` define cómo debe comportarse el repositorio.
+- Los adaptadores implementan esos contratos. `CLIAdapter` traduce la interacción por consola hacia la capa de aplicación, y `InMemoryTaskRepository` cumple el contrato de almacenamiento usando un diccionario en memoria.
+
+Esta separación permite cambiar la interfaz o el mecanismo de persistencia sin tocar el núcleo del dominio.
