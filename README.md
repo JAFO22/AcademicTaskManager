@@ -45,7 +45,10 @@ python -m task_manager.main
 3. En el menú de consola, elige una opción:
 
 - `1` para crear una tarea.
-- `2` para listar las tareas guardadas.
+- `2` para listar las tareas guardadas (pendientes y completadas).
+- `4` para listar solo las tareas pendientes.
+- `5` para completar una tarea (se solicita el `ID`).
+- `6` para eliminar una tarea (se solicita el `ID`).
 - `3` para salir.
 
 ## Tecnologías usadas
@@ -60,12 +63,13 @@ python -m task_manager.main
 
 - `CreateTaskUseCase`: crea una tarea nueva y la guarda en el repositorio.
 - `ListTasksUseCase`: obtiene las tareas guardadas y las separa en pendientes y completadas.
+- `CompleteTaskUseCase`: marca una tarea como completada y actualiza el repositorio.
+- `ListPendingUseCase`: lista las tareas pendientes ordenadas por creación.
+- `DeleteTaskUseCase`: elimina una tarea del repositorio por `ID`.
 
 ## Casos de uso pendientes
 
-- `CompleteTaskUseCase`
-- `ListPendingUseCase`
-- `DeleteTaskUseCase`
+- Ninguno: todos los casos de uso listados arriba están implementados en esta versión.
 
 ## Puertos y adaptadores
 
